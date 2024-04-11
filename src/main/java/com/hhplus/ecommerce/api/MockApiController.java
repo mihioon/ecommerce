@@ -1,4 +1,4 @@
-package com.hhplus.ecommerce;
+package com.hhplus.ecommerce.api;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.*;
 public class MockApiController {
 
     // 잔액충전 / 조회 api
-    @GetMapping("/customer/amount")
+    @GetMapping("/customer/mock-amount")
     public ResponseEntity<?> mockApi() {
         Map<String, Object> response = new HashMap<>();
 
@@ -39,7 +39,7 @@ public class MockApiController {
     }
 
     // 상품 조회 api
-    @GetMapping("/store/product/{productId}")
+    @GetMapping("/store/mock-product/{productId}")
     public ResponseEntity<?> selectProduct() {
         Map<String, Object> response = new HashMap<>();
 
@@ -69,7 +69,7 @@ public class MockApiController {
     }
 
     // 주문 / 결제 api
-    @GetMapping("/payment/checkOut")
+    @GetMapping("/payment/mock-checkOut")
     public ResponseEntity<?> checkOut() {
         Map<String, Object> response = new HashMap<>();
 
@@ -97,7 +97,7 @@ public class MockApiController {
     }
 
     // 인기 판매 상품 조회 api
-    @GetMapping("/product/popularItem")
+    @GetMapping("/product/mock-popularItem")
     public ResponseEntity<?> selectPopularItem() {
         Map<String, Object> response = new HashMap<>();
 
