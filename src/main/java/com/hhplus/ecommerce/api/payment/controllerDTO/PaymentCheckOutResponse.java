@@ -1,15 +1,15 @@
 package com.hhplus.ecommerce.api.payment.controllerDTO;
 
-import com.hhplus.ecommerce.domain.customer.service.serviceDTO.CustomerDTO;
-import com.hhplus.ecommerce.domain.payment.service.serviceDTO.PaymentDTO;
-import com.hhplus.ecommerce.domain.product.service.serviceDTO.ProductDTO;
+import com.hhplus.ecommerce.business.payment.service.serviceDTO.PaymentDTO;
+import com.hhplus.ecommerce.business.product.service.serviceDTO.ProductDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-@Builder
+@AllArgsConstructor
 public class PaymentCheckOutResponse {
-    private String code;
-    private String message;
-    private List<ProductDTO> body;
+    private Long orderNumber;
+    private PaymentProductResponse[] productList;
 }
