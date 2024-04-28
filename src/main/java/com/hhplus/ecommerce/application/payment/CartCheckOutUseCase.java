@@ -47,7 +47,7 @@ public class CartCheckOutUseCase {
     }
 
     @Transactional
-    public boolean paymentOrder(PaymentDTO param){
+    public boolean paymentOrder(PaymentDTO param) {
         try {
             // 사용자 잔액 조회
             Customer customer = customerService.findCustomerByCustomerId(param.getCustomerId());
@@ -57,7 +57,8 @@ public class CartCheckOutUseCase {
             customerService.saveAmountHistory(customerDTO, customer);
 
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
+    }
 }
