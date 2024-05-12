@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.exception;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

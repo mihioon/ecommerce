@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.customer.entity;
 
-import com.hhplus.ecommerce.domain.customer.object.PointType;
+import com.hhplus.ecommerce.util.PointType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
