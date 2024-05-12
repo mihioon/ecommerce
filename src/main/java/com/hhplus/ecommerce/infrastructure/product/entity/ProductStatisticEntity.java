@@ -1,16 +1,15 @@
-package com.hhplus.ecommerce.domain.product.model;
+package com.hhplus.ecommerce.infrastructure.product.entity;
 
+import com.hhplus.ecommerce.domain.product.object.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Getter
-@Setter
 @DynamicUpdate
 @Table(name = "product_statistic")
-public class ProductStatistic {
+public class ProductStatisticEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; /* Key */

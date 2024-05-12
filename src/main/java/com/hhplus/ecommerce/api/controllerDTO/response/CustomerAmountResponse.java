@@ -1,20 +1,13 @@
 package com.hhplus.ecommerce.api.controllerDTO.response;
 
-import lombok.Builder;
+import com.hhplus.ecommerce.domain.customer.object.PointHistory;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Data
-@Builder
+@AllArgsConstructor
 public class CustomerAmountResponse {
-    private long customerId;
-    private String type;
-    private BigDecimal amount;
-
-    public CustomerAmountResponse(long customerId, String type, BigDecimal amount){
-        this.customerId = customerId;
-        this.type = type;
-        this.amount = amount;
-    }
+    private List<PointHistory> pointHistories;
 }

@@ -1,9 +1,9 @@
-package com.hhplus.ecommerce.domain.product.model;
+package com.hhplus.ecommerce.infrastructure.product.entity;
 
-import com.hhplus.ecommerce.domain.payment.model.OrderDetail;
+import com.hhplus.ecommerce.domain.order.object.OrderProduct;
+import com.hhplus.ecommerce.domain.product.object.ProductStatistic;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
@@ -11,10 +11,9 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @DynamicUpdate
 @Table(name = "product")
-public class Product {
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; /* Key */
@@ -32,5 +31,5 @@ public class Product {
     private List<ProductStatistic> productStatistics;
 
     @OneToMany(mappedBy = "orderDetail")
-    private List<OrderDetail> orderDetails ;
+    private List<OrderProduct> orderDetails ;
 }
