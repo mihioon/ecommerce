@@ -13,7 +13,6 @@ public class PointHistory {
     private PointType type;
     private BigDecimal point; /* 금액 */
 
-
     public PointHistory(Long customerId, LocalDateTime dateTime, PointType type, BigDecimal point) throws IllegalArgumentException {
         // 포인트 유효성 검사
         if (point.compareTo(BigDecimal.ZERO) <= 0) {
@@ -25,5 +24,4 @@ public class PointHistory {
         this.type = type;
         this.point = point;
     }
-
 }
