@@ -1,8 +1,8 @@
 package com.hhplus.ecommerce.application.customer;
 
-import com.hhplus.ecommerce.business.customer.model.Customer;
-import com.hhplus.ecommerce.business.customer.service.CustomerService;
-import com.hhplus.ecommerce.business.customer.service.serviceDTO.CustomerDTO;
+import com.hhplus.ecommerce.domain.customer.object.Customer;
+import com.hhplus.ecommerce.domain.customer.service.CustomerService;
+import com.hhplus.ecommerce.domain.customer.service.serviceDTO.CustomerDTO;
 import jakarta.transaction.Transactional;
 
 public class ChargeCustomerAmountUseCase {
