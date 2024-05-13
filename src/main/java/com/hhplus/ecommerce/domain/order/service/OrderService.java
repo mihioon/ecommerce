@@ -4,6 +4,7 @@ import com.hhplus.ecommerce.domain.order.object.Order;
 import com.hhplus.ecommerce.domain.order.object.OrderHistory;
 import com.hhplus.ecommerce.domain.order.object.OrderProduct;
 import com.hhplus.ecommerce.domain.order.repository.OrderRepository;
+import com.hhplus.ecommerce.exception.product.NotFoundException;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,13 @@ public class OrderService {
 
     public OrderHistory findOrder(String orderId){
         OrderEntity orderEntity =  orderRepository.findOrder(orderId);
+        if(orderEntity == null){
+            throw new NotFoundException("해당 주문번호에 해당하는 주문이 없습니다.");
+        }
         List<OrderProductEntity> orderProductEntities = orderEntity.getOrderProducts();
+        if(orderProductEntities == null){
+            throw new NotFoundException("해당 주문번호에 해당하는 주문상세내역이 없습니다.");
+        }
         OrderHistory orderHistory = new OrderHistory(orderEntity.getOrderId(),
                 orderEntity.getCustomerId(),
                 orderEntity.getOrderDate(),

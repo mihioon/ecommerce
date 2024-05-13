@@ -1,12 +1,11 @@
 package com.hhplus.ecommerce.domain.product.service;
 
 import com.hhplus.ecommerce.domain.product.object.Product;
-import com.hhplus.ecommerce.exception.product.ProductsNotFoundException;
+import com.hhplus.ecommerce.exception.product.NotFoundException;
 import com.hhplus.ecommerce.infrastructure.product.ProductJpaRepository;
 import com.hhplus.ecommerce.infrastructure.product.ProductStatisticJpaRepository;
 import com.hhplus.ecommerce.infrastructure.product.entity.ProductEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class ProductService{
         List<ProductEntity> products = productStatJpaRepo.findTopNProductsByCheckOutCnt(pageable);
 
         if(products.isEmpty()){
-            throw new ProductsNotFoundException("조회된 상품이 없습니다.");
+            throw new NotFoundException("조회된 상품이 없습니다.");
         } else {
             List<Product> result = products.stream().map(product -> new Product(product.getId(),
                                                     product.getProductNm(),
