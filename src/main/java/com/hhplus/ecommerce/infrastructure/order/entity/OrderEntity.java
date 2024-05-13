@@ -8,7 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -31,15 +30,4 @@ public class OrderEntity {
 
     @Column(nullable = false)
     private BigDecimal totalPrice; /* 총 주문금액 */
-
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.REMOVE)
-    private List<OrderProductEntity> orderProducts;
-
-    public OrderEntity(String orderId, Long customerId, LocalDateTime orderDate, OrderState orderState, BigDecimal totalPrice) {
-        this.orderId = orderId;
-        this.customerId = customerId;
-        this.orderDate = orderDate;
-        this.orderState = orderState;
-        this.totalPrice = totalPrice;
-    }
 }

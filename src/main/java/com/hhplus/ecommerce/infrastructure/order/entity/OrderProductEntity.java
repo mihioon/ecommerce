@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 @Getter
 @DynamicUpdate
 @AllArgsConstructor
-@Table(name = "order_product")
+@Table(name = "order_product",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"orderId", "productId"})})
 public class OrderProductEntity {
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private OrderEntity orders;
+    @Column(nullable = false)
+    private String orderId;
 
     @Column(nullable = false)
     private Long productId;
