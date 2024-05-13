@@ -44,10 +44,7 @@ public class CheckOutUseCase {
         String orderId = dateFormat.format(dateTime)+customerId;
 
         Order order = new Order(orderId, customerId, dateTime, OrderState.NEW, totalPrice);
-        orderService.saveOrder(order);
-
-        // 주문 상세 내역 저장
-        orderService.saveOrderProductList(orderId, orderProducts);
+        orderService.createOrder(order, orderProducts);
 
         // 주문 내역 조회
         return orderService.findOrder(orderId);

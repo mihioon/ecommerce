@@ -21,6 +21,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public OrderEntity findOrder(String orderId) {
-        return jpaRepo.findById(orderId).orElseThrow(() -> new EntityNotFoundException("해당 주문을 찾지 못했습니다. - order: " + orderId));
+        return jpaRepo.findById(orderId).orElseThrow(() -> new EntityNotFoundException("주문번호에 해당하는 주문을 찾지 못했습니다. - order: " + orderId));
     }
 }

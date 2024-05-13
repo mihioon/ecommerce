@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.domain.product.model;
 
-import com.hhplus.ecommerce.domain.payment.model.OrderDetail;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +29,4 @@ public class Product {
 
     @OneToMany(mappedBy = "productStatistic")
     private List<ProductStatistic> productStatistics;
-
-    @OneToMany(mappedBy = "orderDetail")
-    private List<OrderDetail> orderDetails ;
 }
