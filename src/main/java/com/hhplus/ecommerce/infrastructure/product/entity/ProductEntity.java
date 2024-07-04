@@ -1,9 +1,9 @@
 package com.hhplus.ecommerce.infrastructure.product.entity;
 
-import com.hhplus.ecommerce.domain.order.object.OrderProduct;
-import com.hhplus.ecommerce.domain.product.object.ProductStatistic;
+import com.hhplus.ecommerce.domain.product.object.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @DynamicUpdate
+@NoArgsConstructor
 @Table(name = "product")
 public class ProductEntity {
     @Id
@@ -27,9 +28,14 @@ public class ProductEntity {
     @Column(nullable = false)
     private Long stockQuantity; /* 제품수량 */
 
-    @OneToMany(mappedBy = "productStatistic")
-    private List<ProductStatistic> productStatistics;
+    public void updateQuantity(Long stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
 
-    @OneToMany(mappedBy = "orderDetail")
-    private List<OrderProduct> orderDetails ;
+    public Product toDomain(){
+        return new Product(this.id,
+                this.productNm,
+                this.salePrice,
+                this.stockQuantity);
+    }
 }

@@ -18,4 +18,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public CustomerEntity findById(Long id) {
         return jpaRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("사용자를 찾지 못했습니다. - id: " + id));
     }
+
+    @Override
+    public CustomerEntity save(CustomerEntity customerEntity) {
+        return jpaRepo.save(customerEntity);
+    }
 }

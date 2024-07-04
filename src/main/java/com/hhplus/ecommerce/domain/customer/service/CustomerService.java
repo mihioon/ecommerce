@@ -22,4 +22,9 @@ public class CustomerService {
         CustomerEntity customerEntity = customerRepo.findById(customer.getId());
         customerEntity.updatePoint(customer.getPoint());
     }
+
+    public Customer save(Customer customer) {
+        CustomerEntity customerEntity = customerRepo.save(new CustomerEntity(customer.getPoint()));
+        return new Customer(customerEntity.getId(), customerEntity.getPoint());
+    }
 }

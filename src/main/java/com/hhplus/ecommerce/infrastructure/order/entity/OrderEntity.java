@@ -4,6 +4,7 @@ import com.hhplus.ecommerce.util.OrderState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @DynamicUpdate
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "orders")
 public class OrderEntity {
     @Id
