@@ -11,9 +11,9 @@ public class Customer {
 
     public Customer(Long id, BigDecimal point) throws IllegalArgumentException {
         // 포인트 유효성 검사
-        if (point.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("point는 0보다 작은 값일 수 없습니다.");
-        }
+//        if (point.compareTo(BigDecimal.ZERO) < 0) {
+//            throw new IllegalArgumentException("point는 0보다 작은 값일 수 없습니다.");
+//        }
         this.id = id;
         this.point = point;
     }

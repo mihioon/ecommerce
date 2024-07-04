@@ -34,6 +34,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // Jdbc, Driver
 	implementation 'com.h2database:h2' // h2 : implementation
 	// runtimeOnly 'com.h2database:h2' // h2 : runtimeOnly
+	implementation 'org.springframework.retry:spring-retry'
+	implementation 'org.springframework:spring-aspects'
 }
 
 tasks.named('test') {
