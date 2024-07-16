@@ -1,15 +1,15 @@
 package com.hhplus.ecommerce.application.payment;
 
-import com.hhplus.ecommerce.domain.customer.object.Customer;
-import com.hhplus.ecommerce.domain.customer.object.PointHistory;
-import com.hhplus.ecommerce.domain.customer.service.CustomerService;
-import com.hhplus.ecommerce.domain.customer.service.PointHistoryService;
-import com.hhplus.ecommerce.domain.order.object.Order;
-import com.hhplus.ecommerce.domain.order.object.OrderHistory;
-import com.hhplus.ecommerce.domain.order.object.OrderProduct;
-import com.hhplus.ecommerce.domain.order.service.OrderService;
-import com.hhplus.ecommerce.domain.product.object.ProductQuantity;
-import com.hhplus.ecommerce.domain.product.service.StockService;
+import com.hhplus.ecommerce.domain.customer.Customer;
+import com.hhplus.ecommerce.domain.customer.PointHistory;
+import com.hhplus.ecommerce.domain.customer.CustomerService;
+import com.hhplus.ecommerce.domain.customer.PointHistoryService;
+import com.hhplus.ecommerce.domain.order.Order;
+import com.hhplus.ecommerce.domain.order.OrderHistory;
+import com.hhplus.ecommerce.domain.order.OrderProduct;
+import com.hhplus.ecommerce.domain.order.OrderService;
+import com.hhplus.ecommerce.domain.product.ProductQuantity;
+import com.hhplus.ecommerce.domain.product.StockService;
 import com.hhplus.ecommerce.util.OrderState;
 import com.hhplus.ecommerce.util.PointType;
 import jakarta.transaction.Transactional;

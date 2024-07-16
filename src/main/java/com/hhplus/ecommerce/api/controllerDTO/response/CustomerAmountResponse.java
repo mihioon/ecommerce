@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.api.controllerDTO.response;
 
-import com.hhplus.ecommerce.domain.customer.object.PointHistory;
+import com.hhplus.ecommerce.domain.customer.PointHistory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

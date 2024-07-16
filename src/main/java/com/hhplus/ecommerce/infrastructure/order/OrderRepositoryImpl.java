@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.order;
 
-import com.hhplus.ecommerce.domain.order.repository.OrderRepository;
+import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
 package com.hhplus.ecommerce.application.customer;
 
-import com.hhplus.ecommerce.domain.customer.object.Customer;
-import com.hhplus.ecommerce.domain.customer.object.PointHistory;
-import com.hhplus.ecommerce.domain.customer.service.CustomerService;
-import com.hhplus.ecommerce.domain.customer.service.PointHistoryService;
+import com.hhplus.ecommerce.domain.customer.Customer;
+import com.hhplus.ecommerce.domain.customer.PointHistory;
+import com.hhplus.ecommerce.domain.customer.CustomerService;
+import com.hhplus.ecommerce.domain.customer.PointHistoryService;
 import com.hhplus.ecommerce.util.PointType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

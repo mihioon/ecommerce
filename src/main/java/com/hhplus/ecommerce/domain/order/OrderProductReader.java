@@ -1,6 +1,5 @@
-package com.hhplus.ecommerce.domain.order.service;
+package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.domain.order.repository.OrderProductRepository;
 import com.hhplus.ecommerce.exception.product.NotFoundException;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
-package com.hhplus.ecommerce.domain.customer.repository;
+package com.hhplus.ecommerce.domain.customer;
 
 import com.hhplus.ecommerce.infrastructure.customer.entity.CustomerEntity;
-import org.springframework.stereotype.Repository;
 
 public interface CustomerRepository {
     CustomerEntity findById(Long id);

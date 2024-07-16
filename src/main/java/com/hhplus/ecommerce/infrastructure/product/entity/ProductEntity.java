@@ -1,13 +1,12 @@
 package com.hhplus.ecommerce.infrastructure.product.entity;
 
-import com.hhplus.ecommerce.domain.product.object.Product;
+import com.hhplus.ecommerce.domain.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Getter

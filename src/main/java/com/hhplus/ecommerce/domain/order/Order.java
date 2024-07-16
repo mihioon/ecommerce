@@ -1,4 +1,4 @@
-package com.hhplus.ecommerce.domain.order.object;
+package com.hhplus.ecommerce.domain.order;
 
 import com.hhplus.ecommerce.util.OrderState;
 import lombok.AllArgsConstructor;

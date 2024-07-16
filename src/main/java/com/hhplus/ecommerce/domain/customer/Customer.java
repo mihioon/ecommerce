@@ -1,4 +1,4 @@
-package com.hhplus.ecommerce.domain.customer.object;
+package com.hhplus.ecommerce.domain.customer;
 
 import lombok.Getter;
 

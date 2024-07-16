@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.api.controllerDTO.request;
 
-import com.hhplus.ecommerce.domain.order.object.OrderProduct;
+import com.hhplus.ecommerce.domain.order.OrderProduct;
 import lombok.Getter;
 
 import java.math.BigDecimal;

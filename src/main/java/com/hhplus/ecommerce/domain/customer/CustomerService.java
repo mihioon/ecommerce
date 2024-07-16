@@ -1,12 +1,8 @@
-package com.hhplus.ecommerce.domain.customer.service;
+package com.hhplus.ecommerce.domain.customer;
 
-import com.hhplus.ecommerce.domain.customer.object.Customer;
-import com.hhplus.ecommerce.domain.customer.repository.CustomerRepository;
 import com.hhplus.ecommerce.infrastructure.customer.entity.CustomerEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

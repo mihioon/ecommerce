@@ -1,6 +1,7 @@
 package com.hhplus.ecommerce.domain.order.service;
 
-import com.hhplus.ecommerce.domain.order.repository.OrderProductRepository;
+import com.hhplus.ecommerce.domain.order.OrderProductReader;
+import com.hhplus.ecommerce.domain.order.OrderProductRepository;
 import com.hhplus.ecommerce.exception.product.NotFoundException;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import org.junit.jupiter.api.BeforeEach;
