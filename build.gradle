@@ -36,6 +36,8 @@ dependencies {
 	// runtimeOnly 'com.h2database:h2' // h2 : runtimeOnly
 	implementation 'org.springframework.retry:spring-retry'
 	implementation 'org.springframework:spring-aspects'
+
+	implementation 'org.modelmapper:modelmapper:3.1.0'
 }
 
 tasks.named('test') {

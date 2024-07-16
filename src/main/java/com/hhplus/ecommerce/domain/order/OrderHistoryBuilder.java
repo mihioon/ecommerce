@@ -1,8 +1,5 @@
-package com.hhplus.ecommerce.domain.order.service;
+package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.domain.order.object.OrderHistory;
-import com.hhplus.ecommerce.domain.order.object.OrderProduct;
-import com.hhplus.ecommerce.domain.order.repository.OrderRepository;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import lombok.RequiredArgsConstructor;

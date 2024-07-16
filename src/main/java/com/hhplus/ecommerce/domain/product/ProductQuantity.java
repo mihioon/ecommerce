@@ -1,4 +1,4 @@
-package com.hhplus.ecommerce.domain.product.object;
+package com.hhplus.ecommerce.domain.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

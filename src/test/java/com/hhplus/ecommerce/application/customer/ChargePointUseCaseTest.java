@@ -1,13 +1,12 @@
 package com.hhplus.ecommerce.application.customer;
 
-import com.hhplus.ecommerce.domain.customer.object.Customer;
-import com.hhplus.ecommerce.domain.customer.service.CustomerService;
+import com.hhplus.ecommerce.domain.customer.Customer;
+import com.hhplus.ecommerce.domain.customer.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 
 import java.math.BigDecimal;
 import java.util.concurrent.CountDownLatch;

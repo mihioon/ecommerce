@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.customer;
 
-import com.hhplus.ecommerce.domain.customer.repository.PointHistoryRepository;
+import com.hhplus.ecommerce.domain.customer.PointHistoryRepository;
 import com.hhplus.ecommerce.infrastructure.customer.entity.PointHistoryEntity;
 import org.springframework.stereotype.Repository;
 

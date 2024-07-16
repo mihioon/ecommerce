@@ -4,7 +4,7 @@ import com.hhplus.ecommerce.api.ApiResponse;
 import com.hhplus.ecommerce.api.controllerDTO.request.CustomerPointRequest;
 import com.hhplus.ecommerce.api.controllerDTO.response.CustomerAmountResponse;
 import com.hhplus.ecommerce.application.customer.ChargePointUseCase;
-import com.hhplus.ecommerce.domain.customer.object.PointHistory;
+import com.hhplus.ecommerce.domain.customer.PointHistory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.customer;
 
-import com.hhplus.ecommerce.domain.customer.repository.CustomerRepository;
+import com.hhplus.ecommerce.domain.customer.CustomerRepository;
 import com.hhplus.ecommerce.infrastructure.customer.entity.CustomerEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,8 @@
 package com.hhplus.ecommerce.domain.order.service;
 
-import com.hhplus.ecommerce.domain.order.object.OrderHistory;
-import com.hhplus.ecommerce.domain.order.repository.OrderRepository;
+import com.hhplus.ecommerce.domain.order.OrderReader;
+import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import com.hhplus.ecommerce.util.OrderState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,10 +14,8 @@ import org.mockito.MockitoAnnotations;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 

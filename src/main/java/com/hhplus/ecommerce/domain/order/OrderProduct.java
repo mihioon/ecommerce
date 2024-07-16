@@ -1,6 +1,6 @@
-package com.hhplus.ecommerce.domain.order.object;
+package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.domain.product.object.ProductQuantity;
+import com.hhplus.ecommerce.domain.product.ProductQuantity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

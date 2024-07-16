@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.infrastructure.product.entity;
 
-import com.hhplus.ecommerce.domain.product.object.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

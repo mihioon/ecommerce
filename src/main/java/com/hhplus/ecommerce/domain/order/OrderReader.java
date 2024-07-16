@@ -1,6 +1,5 @@
-package com.hhplus.ecommerce.domain.order.service;
+package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.domain.order.repository.OrderRepository;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

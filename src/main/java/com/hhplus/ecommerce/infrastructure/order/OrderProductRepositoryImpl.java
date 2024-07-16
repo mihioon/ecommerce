@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.order;
 
-import com.hhplus.ecommerce.domain.order.repository.OrderProductRepository;
+import com.hhplus.ecommerce.domain.order.OrderProductRepository;
 import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import org.springframework.stereotype.Repository;
 

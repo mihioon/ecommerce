@@ -1,7 +1,5 @@
-package com.hhplus.ecommerce.domain.customer.service;
+package com.hhplus.ecommerce.domain.customer;
 
-import com.hhplus.ecommerce.domain.customer.object.PointHistory;
-import com.hhplus.ecommerce.domain.customer.repository.PointHistoryRepository;
 import com.hhplus.ecommerce.infrastructure.customer.entity.PointHistoryEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
