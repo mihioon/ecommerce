@@ -1,24 +1,26 @@
-package com.hhplus.ecommerce.infrastructure.order.entity;
+package com.hhplus.ecommerce.infrastructure.order;
 
 import com.hhplus.ecommerce.util.OrderState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "orders")
 public class OrderEntity {
     @Id
-    private String orderId; /* Key */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; /* Key */
+
+    @Column(nullable = false)
+    private String orderCode;
 
     @Column(nullable = false)
     private Long customerId;
@@ -32,4 +34,12 @@ public class OrderEntity {
 
     @Column(nullable = false)
     private BigDecimal totalPrice; /* 총 주문금액 */
+
+    public OrderEntity(String orderCode, Long customerId, LocalDateTime now, OrderState orderState, BigDecimal totalPrice) {
+        this.orderCode = orderCode;
+        this.customerId = customerId;
+        this.orderDate = now;
+        this.orderState = orderState;
+        this.totalPrice = totalPrice;
+    }
 }

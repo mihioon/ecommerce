@@ -1,7 +1,6 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,33 +10,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderAppender {
     public final OrderRepository orderRepository;
-    public final OrderProductRepository orderProductRepository;
+    private final NullChecker nullChecker;
 
-    public void append(Order order, List<OrderProduct> orderProducts){
-        orderCreate(order);
-        orderProductsCreate(order.getOrderId(), orderProducts);
-    }
+    // 주문 생성
+    public Long append(Order order) {
+        //주문생성 후 주문 아이디 조회
+        Long orderId = orderRepository.persistOrder(order);
+        List<OrderProduct> orderProducts = order.getOrderProducts();
 
-    void orderCreate(Order order){
-        orderRepository.save(new OrderEntity(
-                order.getOrderId(),
-                order.getCustomerId(),
-                order.getDateTime(),
-                order.getOrderState(),
-                order.getTotalPrice()
-        ));
-    }
+        //유효성 체크
+        NullChecker.checkNotNull(orderProducts, "orderProducts");
 
-    void orderProductsCreate(String orderId, List<OrderProduct> orderProducts){
-        orderProductRepository.saveAll(orderProducts.stream()
-                .map(orderProduct -> new OrderProductEntity(
-                                orderId,
-                                orderProduct.getProductId(),
-                                orderProduct.getQuantity(),
-                                orderProduct.getProdTotalPrice()
-                        )
+        //주문 제품 리스트 저장
+        orderRepository.persistOrderProducts(orderId, order.getOrderProducts());
 
-                ).toList()
-        );
+        return orderId;
     }
 }

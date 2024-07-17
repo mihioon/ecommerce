@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OrderReader {
     private final OrderRepository orderRepository;
+    private final NullChecker nullChecker;
 
-    public OrderEntity read(String orderId){
-        return orderRepository.findOrder(orderId);
+    // 주문 아이디로 주문 조회
+    public Order read(Long orderId){
+        Order order = orderRepository.findOrder(orderId);
+        NullChecker.checkNotNull(order, "order");
+        return order;
     }
 }

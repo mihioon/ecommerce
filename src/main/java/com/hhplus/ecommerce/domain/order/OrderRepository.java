@@ -1,8 +1,12 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
+import java.util.List;
 
 public interface OrderRepository {
-    public void save(OrderEntity order);
-    public OrderEntity findOrder(String orderId);
+    public Order findOrder(Long orderId);
+    public OrderSheet findOrderSheet(Long orderSheetId);
+    public Long persistOrder(Order order);
+    public void persistOrderProducts(Long orderId, List<OrderProduct> orderProducts);
+
+    public List<OrderProduct> findOrderProducts(Long orderId);
 }

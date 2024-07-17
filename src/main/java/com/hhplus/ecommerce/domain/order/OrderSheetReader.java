@@ -4,17 +4,15 @@ import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
-public class OrderProductReader {
+public class OrderSheetReader {
     private final OrderRepository orderRepository;
     private final NullChecker nullChecker;
 
-    public List<OrderProduct> read(Long orderId){
-        List<OrderProduct> orderProducts = orderRepository.findOrderProducts(orderId);
-        NullChecker.checkNotNull(orderProducts, "orderProducts");
-        return orderProducts;
+    public OrderSheet read(Long orderSheetId) {
+        OrderSheet orderSheet = orderRepository.findOrderSheet(orderSheetId);
+        NullChecker.checkNotNull(orderSheet, "orderSheet");
+        return orderSheet;
     }
 }
