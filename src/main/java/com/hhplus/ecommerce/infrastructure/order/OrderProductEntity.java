@@ -19,16 +19,13 @@ public class OrderProductEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String orderId;
+    private Long orderId;
 
     @Column(nullable = false)
     private Long productId;
 
     @Column(nullable = false)
     private BigDecimal finalPrice;
-
-    @Column(nullable = false)
-    private BigDecimal productAmount;
 
     @Column
     private BigDecimal discountRate;
@@ -37,7 +34,7 @@ public class OrderProductEntity {
     private Long quantity;
 
 
-    public OrderProductEntity(String orderId, Long productId, Long quantity, BigDecimal finalPrice) {
+    public OrderProductEntity(Long orderId, Long productId, Long quantity, BigDecimal finalPrice) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;

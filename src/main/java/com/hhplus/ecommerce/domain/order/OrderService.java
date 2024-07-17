@@ -15,7 +15,7 @@ public class OrderService {
         return orderReader.read(orderId);
     }
 
-    // 주문 생성
+    // 주문 생성(주문 상세 포함)
     public Long createOrder(Order order) {
         return orderAppender.append(order);
     }

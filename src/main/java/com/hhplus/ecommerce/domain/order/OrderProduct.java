@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 public class OrderProduct {
-    private String orderId;
+    private Long orderId;
     private Long productId;
     private BigDecimal productAmount;
     private BigDecimal finalPrice;
@@ -19,5 +19,11 @@ public class OrderProduct {
         this.productId = productId;
         this.quantity = quantity;
         this.productAmount = prodTotalPrice;
+    }
+
+    public OrderProduct(Long productId, BigDecimal finalPrice, Long quantity) {
+        this.productId = productId;
+        this.finalPrice = finalPrice;
+        this.quantity = quantity;
     }
 }

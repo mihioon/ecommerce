@@ -1,7 +1,6 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.exception.product.NotFoundException;
-import com.hhplus.ecommerce.infrastructure.order.OrderProductEntity;
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +10,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderProductReader {
     private final OrderRepository orderRepository;
+    private final NullChecker nullChecker;
 
-    public List<OrderProduct> read(String orderId){
+    public List<OrderProduct> read(Long orderId){
         List<OrderProduct> orderProducts = orderRepository.findOrderProducts(orderId);
-        if(orderProducts.isEmpty()){
-            throw new NotFoundException("해당 주문번호에 해당하는 주문상세내역이 없습니다.");
-        }
+        NullChecker.checkNotNull(orderProducts, "orderProducts");
         return orderProducts;
     }
 }

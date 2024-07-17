@@ -1,5 +1,6 @@
 package com.hhplus.ecommerce.domain.order;
 
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OrderSheetReader {
     private final OrderRepository orderRepository;
+    private final NullChecker nullChecker;
+
     public OrderSheet read(Long orderSheetId) {
-        return orderRepository.findOrderSheet(orderSheetId);
+        OrderSheet orderSheet = orderRepository.findOrderSheet(orderSheetId);
+        NullChecker.checkNotNull(orderSheet, "orderSheet");
+        return orderSheet;
     }
 }

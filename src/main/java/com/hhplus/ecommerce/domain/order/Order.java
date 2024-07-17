@@ -26,6 +26,14 @@ public class Order {
         this.orderState = OrderState.NEW;
     }
 
+    public Order(String orderCode, Long customerId, BigDecimal totalPrice, List<OrderProduct> orderProducts) {
+        this.orderCode = orderCode;
+        this.customerId = customerId;
+        this.totalPrice = totalPrice;
+        this.orderState = OrderState.NEW;
+        this.orderProducts = orderProducts;
+    }
+
     public Order(Long id, String orderCode, Long customerId, OrderState orderState, BigDecimal totalPrice) {
         this.id = id;
         this.orderCode = orderCode;

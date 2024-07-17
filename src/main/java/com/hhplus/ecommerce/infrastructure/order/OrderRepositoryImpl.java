@@ -5,12 +5,12 @@ import com.hhplus.ecommerce.domain.order.OrderProduct;
 import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.domain.order.OrderSheet;
 import com.hhplus.ecommerce.util.OrderState;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
@@ -28,9 +28,8 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 주문 조회
     @Override
     public Order findOrder(Long orderId) {
-        OrderEntity orderEntity = orderJpaRepo.findById(orderId).orElseThrow(()
-                -> new EntityNotFoundException("해당하는 주문 없음"));
-        return toDomain(orderEntity);
+        Optional<OrderEntity> orderEntity = orderJpaRepo.findById(orderId);
+        return orderEntity.map(this::toDomain).orElse(null);
     }
 
     // 주문 생성
@@ -41,30 +40,27 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     // 주문 제품 생성
     @Override
-    public void persistOrderProducts(List<OrderProduct> orderProducts) {
-        if(orderProducts == null) return;
+    public void persistOrderProducts(Long orderId, List<OrderProduct> orderProducts) {
         for(OrderProduct orderProduct : orderProducts){
-            orderProductJpaRepo.save(toEntity(orderProduct));
+            orderProductJpaRepo.save(toEntity(orderProduct, orderId));
         }
     }
 
     // 주문서 조회
     @Override
     public OrderSheet findOrderSheet(Long orderSheetId) {
-        OrderSheetEntity orderSheetEntity = orderSheetJpaRepo.findById(orderSheetId).orElseThrow(()
-                -> new EntityNotFoundException("해당하는 주문 없음"));
-        return toDomain(orderSheetEntity);
+        Optional<OrderSheetEntity> orderSheetEntity = orderSheetJpaRepo.findById(orderSheetId);
+        return orderSheetEntity.map(this::toDomain).orElse(null);
     }
 
 
     // 주문 조회
     @Override
-    public List<OrderProduct> findOrderProducts(String orderId) {
-        List<OrderProduct> orderProducts = new ArrayList<>();
-        List<OrderProductEntity> orderProductEntities = orderProductJpaRepo.findByOrderId(orderId);
-        for(OrderProductEntity orderProductEntity : orderProductEntities){
-            orderProducts.add(toDomain(orderProductEntity));
-        }
+    public List<OrderProduct> findOrderProducts(Long orderId) {
+        List<OrderProduct> orderProducts = orderProductJpaRepo.findByOrderId(orderId)
+                .stream()
+                .map(this::toDomain)
+                .collect(Collectors.toList());
         return orderProducts;
     }
 
@@ -97,17 +93,18 @@ public class OrderRepositoryImpl implements OrderRepository {
     private OrderProduct toDomain(OrderProductEntity orderProductEntity) {
         return new OrderProduct(
                 orderProductEntity.getOrderId(),
-                orderProductEntity.getProductId(), /* Key */
-                orderProductEntity.getProductAmount(),
-                orderProductEntity.getFinalPrice(), /* 총 주문금액 */
+                orderProductEntity.getProductId(),
+                null,
+                orderProductEntity.getFinalPrice(),
                 orderProductEntity.getDiscountRate(),
                 orderProductEntity.getQuantity()
         );
     }
 
     // 도메인 > 엔티티 변환
-    private OrderProductEntity toEntity(OrderProduct orderProduct) {
+    private OrderProductEntity toEntity(OrderProduct orderProduct, Long orderId) {
         return new OrderProductEntity(
+                orderId,
                 orderProduct.getProductId(),
                 orderProduct.getQuantity(), /* 주문 상태 */
                 orderProduct.getFinalPrice() /* 총 주문금액 */
