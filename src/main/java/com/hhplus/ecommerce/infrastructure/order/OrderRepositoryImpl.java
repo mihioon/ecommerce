@@ -4,9 +4,11 @@ import com.hhplus.ecommerce.domain.order.Order;
 import com.hhplus.ecommerce.domain.order.OrderProduct;
 import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.domain.order.OrderSheet;
+import com.hhplus.ecommerce.util.OrderState;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     // 주문 조회
     @Override
-    public Order findOrder(String orderId) {
+    public Order findOrder(Long orderId) {
         OrderEntity orderEntity = orderJpaRepo.findById(orderId).orElseThrow(()
                 -> new EntityNotFoundException("해당하는 주문 없음"));
         return toDomain(orderEntity);
@@ -33,13 +35,14 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     // 주문 생성
     @Override
-    public void persistOrder(Order order) {
-        orderJpaRepo.save(toEntity(order));
+    public Long persistOrder(Order order) {
+        return orderJpaRepo.save(toEntity(order)).getId();
     }
 
     // 주문 제품 생성
     @Override
     public void persistOrderProducts(List<OrderProduct> orderProducts) {
+        if(orderProducts == null) return;
         for(OrderProduct orderProduct : orderProducts){
             orderProductJpaRepo.save(toEntity(orderProduct));
         }
@@ -71,7 +74,8 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 엔티티 > 도메인 변환
     private Order toDomain(OrderEntity orderEntity) {
         return new Order(
-                orderEntity.getOrderId(), /* Key */
+                orderEntity.getId(),
+                orderEntity.getOrderCode(), /* Key */
                 orderEntity.getCustomerId(),
                 orderEntity.getOrderState(), /* 주문 상태 */
                 orderEntity.getTotalPrice() /* 총 주문금액 */
@@ -81,7 +85,10 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 도메인 > 엔티티 변환
     private OrderEntity toEntity(Order order) {
         return new OrderEntity(
+                order.getOrderCode(),
                 order.getCustomerId(),
+                LocalDateTime.now(),
+                OrderState.NEW,
                 order.getTotalPrice() /* 총 주문금액 */
         );
     }

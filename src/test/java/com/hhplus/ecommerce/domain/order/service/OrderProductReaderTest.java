@@ -4,7 +4,6 @@ import com.hhplus.ecommerce.domain.order.OrderProduct;
 import com.hhplus.ecommerce.domain.order.OrderProductReader;
 import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.exception.product.NotFoundException;
-import com.hhplus.ecommerce.infrastructure.order.OrderProductEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.domain.order.service;
 
-import com.hhplus.ecommerce.domain.order.Order;
 import com.hhplus.ecommerce.domain.order.OrderReader;
 import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.infrastructure.order.OrderEntity;

@@ -9,7 +9,7 @@ public class OrderReader {
     private final OrderRepository orderRepository;
 
     // 주문 아이디로 주문 조회
-    public Order read(String orderId){
+    public Order read(Long orderId){
         return orderRepository.findOrder(orderId);
     }
 }

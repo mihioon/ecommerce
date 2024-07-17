@@ -17,7 +17,10 @@ import java.time.LocalDateTime;
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String orderId; /* Key */
+    private Long id; /* Key */
+
+    @Column(nullable = false)
+    private String orderCode;
 
     @Column(nullable = false)
     private Long customerId;
@@ -32,10 +35,11 @@ public class OrderEntity {
     @Column(nullable = false)
     private BigDecimal totalPrice; /* 총 주문금액 */
 
-    public OrderEntity(Long customerId, BigDecimal totalPrice) {
+    public OrderEntity(String orderCode, Long customerId, LocalDateTime now, OrderState orderState, BigDecimal totalPrice) {
+        this.orderCode = orderCode;
         this.customerId = customerId;
-        this.orderDate = LocalDateTime.now();
-        this.orderState = OrderState.NEW;
+        this.orderDate = now;
+        this.orderState = orderState;
         this.totalPrice = totalPrice;
     }
 }

@@ -11,13 +11,13 @@ public class OrderService {
     private final OrderAppender orderAppender;
 
     // 주문 아이디로 주문 조회
-    public Order findOrder(String orderId){
+    public Order findOrder(Long orderId){
         return orderReader.read(orderId);
     }
 
     // 주문 생성
-    public void createOrder(Order order) {
-        orderAppender.append(order);
+    public Long createOrder(Order order) {
+        return orderAppender.append(order);
     }
 
     // 주문서 아이디로 주문서 조회
@@ -28,6 +28,7 @@ public class OrderService {
     // 주문서 객체 > 주문 객체 변환
     public Order toOrder(OrderSheet orderSheet){
         return new Order(
+                orderSheet.getId(),
                 orderSheet.getCustomerId(),
                 orderSheet.getTotalAmount()
         );

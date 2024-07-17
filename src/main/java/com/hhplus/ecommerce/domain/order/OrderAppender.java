@@ -11,8 +11,9 @@ public class OrderAppender {
     public final OrderRepository orderRepository;
 
     // 주문 생성
-    public void append(Order order) {
-        orderRepository.persistOrder(order); // 변환된 엔터티
+    public Long append(Order order) {
+        Long orderId = orderRepository.persistOrder(order); // 변환된 엔터티
         orderRepository.persistOrderProducts(order.getOrderProducts());
+        return orderId;
     }
 }
