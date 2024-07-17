@@ -1,31 +1,35 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderEntity;
-import com.hhplus.ecommerce.infrastructure.order.entity.OrderProductEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderReader orderReader;
-    private final OrderProductReader orderProductReader;
-    private final OrderHistoryBuilder orderHistoryBuilder;
+    private final OrderSheetReader orderSheetReader;
     private final OrderAppender orderAppender;
 
-    public OrderHistory findOrder(String orderId){
-        OrderEntity orderEntity = orderReader.read(orderId);
-        List<OrderProductEntity> orderProductEntities = orderProductReader.read(orderId);
-
-        OrderHistory orderHistory = orderHistoryBuilder.build(orderEntity, orderProductEntities);
-
-        return orderHistory;
+    // 주문 아이디로 주문 조회
+    public Order findOrder(String orderId){
+        return orderReader.read(orderId);
     }
 
-    public void createOrder(Order order, List<OrderProduct> orderProducts) {
-        orderAppender.append(order, orderProducts);
+    // 주문 생성
+    public void createOrder(Order order) {
+        orderAppender.append(order);
+    }
+
+    // 주문서 아이디로 주문서 조회
+    public OrderSheet findOrderSheet(Long orderSheetId){
+        return orderSheetReader.read(orderSheetId);
+    }
+
+    // 주문서 객체 > 주문 객체 변환
+    public Order toOrder(OrderSheet orderSheet){
+        return new Order(
+                orderSheet.getCustomerId(),
+                orderSheet.getTotalAmount()
+        );
     }
 }

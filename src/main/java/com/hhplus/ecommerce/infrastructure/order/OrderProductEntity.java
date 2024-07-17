@@ -1,7 +1,6 @@
-package com.hhplus.ecommerce.infrastructure.order.entity;
+package com.hhplus.ecommerce.infrastructure.order;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
@@ -26,15 +25,28 @@ public class OrderProductEntity {
     private Long productId;
 
     @Column(nullable = false)
-    private Long quantity;
+    private BigDecimal finalPrice;
 
     @Column(nullable = false)
-    private BigDecimal prodTotalPrice;
+    private BigDecimal productAmount;
 
-    public OrderProductEntity(String orderId, Long productId, Long quantity, BigDecimal prodTotalPrice) {
+    @Column
+    private BigDecimal discountRate;
+
+    @Column(nullable = false)
+    private Long quantity;
+
+
+    public OrderProductEntity(String orderId, Long productId, Long quantity, BigDecimal finalPrice) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
-        this.prodTotalPrice = prodTotalPrice;
+        this.finalPrice = finalPrice;
+    }
+
+    public OrderProductEntity(Long productId, Long quantity, BigDecimal finalPrice) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.finalPrice = finalPrice;
     }
 }

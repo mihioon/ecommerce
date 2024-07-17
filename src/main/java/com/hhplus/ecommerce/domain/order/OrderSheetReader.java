@@ -5,11 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OrderReader {
+public class OrderSheetReader {
     private final OrderRepository orderRepository;
-
-    // 주문 아이디로 주문 조회
-    public Order read(String orderId){
-        return orderRepository.findOrder(orderId);
+    public OrderSheet read(Long orderSheetId) {
+        return orderRepository.findOrderSheet(orderSheetId);
     }
 }
