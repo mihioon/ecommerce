@@ -89,6 +89,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 엔티티 > 도메인 변환
     private OrderProduct toDomain(OrderProductEntity orderProductEntity) {
         return new OrderProduct(
+                orderProductEntity.getOrderId(),
                 orderProductEntity.getProductId(), /* Key */
                 orderProductEntity.getProductAmount(),
                 orderProductEntity.getFinalPrice(), /* 총 주문금액 */
