@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customer_point_history",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"customerId", "date"})})
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"customerId", "dateTime"})})
 public class PointHistoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
