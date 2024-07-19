@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  logging:
+    level:
+      root: DEBUG
+
+server:
+  port: 8081 # 예시
+
+logging:
+  level:
+    root: WARN
