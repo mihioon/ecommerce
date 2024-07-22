@@ -1,24 +1,27 @@
 package com.hhplus.ecommerce.domain.product;
 
-import com.hhplus.ecommerce.infrastructure.product.ProductJpaRepository;
-import com.hhplus.ecommerce.infrastructure.product.entity.ProductEntity;
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class ProductReader {
-    private final ProductJpaRepository productRepository;
+    private final ProductRepository productRepository;
 
-    /*public Product read(Long productId){
-        ProductEntity entity = productRepository.findProductByProductId(productId);
-        return new Product(entity.getId(), entity.getProductNm(), entity.getSalePrice(), entity.getStockQuantity());
-    }*/
-
-    public ProductEntity entityRead(Long productId){
-        ProductEntity entity = productRepository.findProductById(productId);
-        return entity;
+    // 상품상세정보 없이 상품만 조회
+    public Product read(Long productId){
+        Product product = productRepository.findProductById(productId);
+        NullChecker.checkNotNull(product, "product");
+        return product;
     }
 
-
+    // 인기있는 상위 5개 상품 조회
+    public List<Product> findTop5Id(){
+        List<Product> products = productRepository.findTop5Id();
+        NullChecker.checkNotNull(products, "products");
+        return products;
+    }
 }

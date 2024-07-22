@@ -1,8 +1,11 @@
 package com.hhplus.ecommerce.infrastructure.product;
 
-import com.hhplus.ecommerce.infrastructure.product.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface ProductJpaRepository extends JpaRepository<ProductEntity, Long> {
-    public ProductEntity findProductById(Long param);
+    @Query("SELECT p FROM ProductEntity p JOIN p.productDetailEntity d ORDER BY d.likeCnt DESC, d.dayOrderCnt DESC")
+    List<ProductEntity> findTop5ProductsByOrderByLikeCntDescDayOrderCntDesc();
 }

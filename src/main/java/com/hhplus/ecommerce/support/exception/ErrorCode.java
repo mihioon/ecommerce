@@ -11,6 +11,13 @@ public enum ErrorCode {
     CHARGE_AMOUNT_IS_NEGATIVE("포인트는 0 이상 충전 가능합니다."),
     NOT_ENOUGH_BALANCE("잔액이 충분하지 않습니다."),
 
+    // Stock
+    NOT_ENOUGH_STOCK("재고가 충분하지 않습니다."),
+
+    // Product
+    PRODUCT_IS_NOT_FOUND("조회된 상품이 없습니다."),
+    PRODUCTSTATIS_IS_NOT_FOUND("조회된 상품이 없습니다."),
+
     // Payment
     PAYMENT_IS_NOT_FOUND("결제 내역이 존재하지 않습니다."),
     NOT_AVAILABLE_STATE_PAYMENT("결제 가능한 상태가 아닙니다"),

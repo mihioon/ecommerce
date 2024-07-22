@@ -1,25 +1,33 @@
 package com.hhplus.ecommerce.domain.product;
 
-import com.hhplus.ecommerce.infrastructure.product.entity.ProductEntity;
+import com.hhplus.ecommerce.domain.NullChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class StockService {
-    private final ProductReader productReader;
-    private final ProductConverter productConverter;
+    private final StockDecrementer stockDecrementer;
+    private final StockIncrementer stockIncrementer;
+    private final NullChecker nullChecker;
 
-    public void deductStock(List<ProductQuantity> productQuantities){
-        productQuantities.forEach(productQuantity -> {
-            ProductEntity productEntity = productReader.entityRead(productQuantity.getId());
-            Product product = productConverter.toProduct(productEntity);
+    //재고차감
+    @Transactional
+    public void deductStocks(List<StockCommand> stocks){
+        NullChecker.checkNotNull(stocks, "List<StockCommand>");
+        for(StockCommand stock : stocks){
+            stockDecrementer.deductStock(stock);
+        }
+    }
 
-            product.deduct(productQuantity.getQuantity());
-
-            productEntity.updateQuantity(product.getStockQuantity());
-        });
+    //주문 취소 - 재고추가
+    @Transactional
+    public void addStocks(List<StockCommand> stocks){
+        for(StockCommand stock : stocks){
+            stockIncrementer.addStock(stock);
+        }
     }
 }
