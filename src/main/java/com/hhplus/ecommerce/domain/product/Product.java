@@ -11,12 +11,18 @@ public class Product {
     private Long id; /* Key */
     private String productNm; /* 제품명 */
     private BigDecimal salePrice; /* 제품금액 */
-    private Long stockQuantity; /* 제품수량 */
+    private Detail productDetail; /* 제품상세정보 */
 
-    public void deduct(Long quantity){
-        if (quantity.compareTo(this.stockQuantity) > 0) {
-            throw new IllegalArgumentException("주문수량은 현재 재고보다 작거나 같아야합니다.");
-        }
-        this.stockQuantity = this.stockQuantity - quantity;
+    @Getter
+    @AllArgsConstructor
+    public static class Detail {
+        private Long productId;
+        private Long quantity;
+        private Long likeCnt;
+        private Long dayOrderCnt;
+    }
+
+    public void assembleWithDetail(Detail productDetail) {
+        this.productDetail = productDetail;
     }
 }
