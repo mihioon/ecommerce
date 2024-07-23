@@ -16,7 +16,7 @@ public class Product {
     @Getter
     @AllArgsConstructor
     public static class Detail {
-        private Long productId;
+        private Long detailId;
         private Long quantity;
         private Long likeCnt;
         private Long dayOrderCnt;

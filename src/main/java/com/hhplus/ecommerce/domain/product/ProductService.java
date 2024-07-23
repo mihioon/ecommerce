@@ -11,6 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService{
     private final ProductReader productReader;
+    private final ProductManager productManager;
     private final NullChecker nullChecker;
 
     @Transactional(readOnly = true)
@@ -19,7 +20,11 @@ public class ProductService{
     }
 
     @Transactional(readOnly = true)
-    public List<Product> findPopularProduct(Long productId) {
-        return productReader.findTop5Id();
+    public List<Product> findPopularProduct(int pageSize) {
+        return productReader.findPopularProduct(pageSize);
+    }
+
+    public Long saveProduct(Product product) {
+        return productManager.save(product);
     }
 }

@@ -1,12 +1,14 @@
 package com.hhplus.ecommerce.infrastructure.product;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "product_datail")
 public class ProductDetailEntity {
     @Id
@@ -22,11 +24,7 @@ public class ProductDetailEntity {
     @Column
     private Long dayOrderCnt; /* 당일 주문 수 */
 
-    public void minusQuantity(Long orderQuantity) {
-        this.stockQuantity = stockQuantity - orderQuantity;
-    }
-
-    public void plusQuantity(Long orderQuantity) {
-        this.stockQuantity =  stockQuantity + orderQuantity;
+    public void setQuantity(Long quantity) {
+        this.stockQuantity =  quantity;
     }
 }
