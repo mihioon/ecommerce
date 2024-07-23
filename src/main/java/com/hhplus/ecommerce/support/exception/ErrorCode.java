@@ -13,6 +13,7 @@ public enum ErrorCode {
 
     // Stock
     NOT_ENOUGH_STOCK("재고가 충분하지 않습니다."),
+    ORDER_QUANTITY_IS_NOT_POSITIVE("주문수량은 0보다 커야합니다."),
 
     // Product
     PRODUCT_IS_NOT_FOUND("조회된 상품이 없습니다."),
