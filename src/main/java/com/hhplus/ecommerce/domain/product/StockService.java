@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,24 +24,18 @@ public class StockService {
     private final StockManager stockManager;
 
     //재고차감
-    @Retryable(
-            retryFor = {ObjectOptimisticLockingFailureException.class},
-            maxAttempts = 3,
-            backoff = @Backoff(delay = 500, maxDelay = 600, random = true)// 밀리초 : 1초
-    )
     @Transactional
     public void deductStocks(List<StockCommand> stocks){
         log.info(Thread.currentThread() + ">> 스레드 시작!");
         NullChecker.checkNotNull(stocks, "List<StockCommand>");
+
+        // ID 순서로 정렬
+        stocks.sort(Comparator.comparing(StockCommand::getProductId));
+
         for(StockCommand stock : stocks){
             stockManager.deductStock(stock);
         }
         log.info(Thread.currentThread() + ">> 스레드 끝!");
-    }
-    @Recover
-    public void recover(ObjectOptimisticLockingFailureException e) {
-        // 실패시 로직
-        throw new IllegalArgumentException(STOCK_DEDUCT_FAILED.getMessage());
     }
 
     //주문 취소 - 재고추가
