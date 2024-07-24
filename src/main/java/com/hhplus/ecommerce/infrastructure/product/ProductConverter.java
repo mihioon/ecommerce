@@ -48,7 +48,8 @@ public class ProductConverter {
                 productDetail.getDetailId(),
                 productDetail.getQuantity(),
                 productDetail.getLikeCnt(),
-                productDetail.getDayOrderCnt()
+                productDetail.getDayOrderCnt(),
+                null
         );
     }
 }
