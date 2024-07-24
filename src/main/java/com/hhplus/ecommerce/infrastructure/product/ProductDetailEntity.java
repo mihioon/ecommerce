@@ -24,6 +24,9 @@ public class ProductDetailEntity {
     @Column
     private Long dayOrderCnt; /* 당일 주문 수 */
 
+    @Version
+    private Long version; /* 버전 관리 */
+
     public void setQuantity(Long quantity) {
         this.stockQuantity =  quantity;
     }

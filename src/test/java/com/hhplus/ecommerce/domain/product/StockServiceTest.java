@@ -1,6 +1,7 @@
 package com.hhplus.ecommerce.domain.product;
 
 import com.hhplus.ecommerce.support.exception.InputValidationException;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @SpringBootTest
 class StockServiceTest {
     @Autowired
@@ -111,6 +113,9 @@ class StockServiceTest {
         AtomicInteger successCount = new AtomicInteger();
         AtomicInteger failCount = new AtomicInteger();
 
+        Long start =  System.currentTimeMillis();
+        log.info(">>>>>> 작업 시작 >>>>>>");
+
         for (int i = 0; i < numThreads; i++) {
             executorService.execute(() -> {
                 try {
@@ -127,6 +132,10 @@ class StockServiceTest {
         doneSignal.await(); //스레드 작업이 완료될 때 까지 대기
         executorService.shutdown(); //작업이 완료된 후 스레드 풀 종료
 
+        Long end =  System.currentTimeMillis();
+        log.info(">>>>>> 작업 완료 >>>>>>");
+
+        log.info("총 작업 시간: " + (end - start) + "ms");
         // then
         assertAll(
                 () -> assertThat(successCount.get()).isEqualTo(5),
