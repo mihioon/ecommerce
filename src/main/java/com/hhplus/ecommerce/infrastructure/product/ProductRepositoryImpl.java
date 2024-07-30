@@ -46,7 +46,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Long findStockById(Long productId) {
-        Optional<ProductDetailEntity> productDetailEntity = productDetailJpaRepo.findByIdWithLock(productId);
+        Optional<ProductDetailEntity> productDetailEntity = productDetailJpaRepo.findById(productId);
         return productDetailEntity.map(ProductConverter::toStock).orElse(null);
     }
 

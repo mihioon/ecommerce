@@ -96,7 +96,7 @@ class StockServiceTest {
     }
 
     @Test
-    @DisplayName("상품 주문 동시성 테스트 - 낙관적 락")
+    @DisplayName("상품 주문 동시성 테스트 - 정합성")
     public void test_concurrency_deduct_stocks_1() throws InterruptedException {
         // given - 고양이 인형 0 -> 5개 추가
         stocks.add(new StockCommand(catId, 5L));
@@ -148,7 +148,7 @@ class StockServiceTest {
     }
 
     @Test
-    @DisplayName("상품 주문 동시성 테스트 - 비관적 락")
+    @DisplayName("상품 주문 동시성 테스트 - 데드락")
     public void test_concurrency_deduct_stocks_2() throws InterruptedException {
         // given - 고양이 및 곰돌이 인형 0 -> 5개 추가
         stocks.add(new StockCommand(catId, 5L));

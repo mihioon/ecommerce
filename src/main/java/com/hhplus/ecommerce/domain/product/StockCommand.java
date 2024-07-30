@@ -21,7 +21,7 @@ public class StockCommand {
         // 주문서에서 검증된 값이 내부서버에서 오류
         Optional.ofNullable(orderQuantity)
                 .filter(qty -> qty > 0)
-                .orElseThrow(() -> new IllegalArgumentException(ORDER_QUANTITY_IS_NOT_POSITIVE.getMessage()));
+                .orElseThrow(() -> new InputValidationException(ORDER_QUANTITY_IS_NOT_POSITIVE.getMessage()));
 
         // 재고가 조회되지 않아 null 인 경우
         NullChecker.checkNotNull(currentQuantity, "currentQuantity");
