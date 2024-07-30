@@ -1,6 +1,7 @@
 package com.hhplus.ecommerce.domain.product;
 
 import com.hhplus.ecommerce.domain.NullChecker;
+import com.hhplus.ecommerce.infrastructure.redis.RedissonLock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
@@ -25,6 +26,7 @@ public class StockService {
 
     //재고차감
     @Transactional
+    @RedissonLock(value = "deductStocks")
     public void deductStocks(List<StockCommand> stocks){
         log.info(Thread.currentThread() + ">> 스레드 시작!");
         NullChecker.checkNotNull(stocks, "List<StockCommand>");

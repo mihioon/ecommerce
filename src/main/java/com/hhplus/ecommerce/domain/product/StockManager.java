@@ -27,7 +27,7 @@ public class StockManager {
         // 현재 재고 조회
         NullChecker.checkNotNull(productId, "productId");
         Long currentQuantity = productRepository.findStockById(productId);
-        log.info("[currentQuantity] " + currentQuantity);
+        log.info("🧸[currentQuantity] " + currentQuantity);
         // 값 검증
         stock.validateValue(currentQuantity);
         if(sign == -1){ // deductStock
