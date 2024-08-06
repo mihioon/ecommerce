@@ -8,27 +8,27 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class OrderProductReaderTest {
+class OrderSheetServiceTest {
     @Mock
     private OrderRepository orderRepository;
 
     @InjectMocks
-    private OrderProductReader orderProductReader;
+    private OrderSheetService orderSheetService;
 
     @Test
-    @DisplayName("주문물품목록이 조회되지 않을 경우 에러반환")
-    void find_order_byOrderId_noResult() {
+    @DisplayName("주문서가 없는 경우 예외 확인")
+    public void test_orderSheet_not_found_exception() {
         // when
-        when(orderRepository.findOrderProducts(any())).thenReturn(null);
+        when(orderRepository.findOrderSheet(anyLong())).thenReturn(null);
 
-        // Then
+        // then
         assertThrows(
                 NullPointerException.class,
-                () -> orderProductReader.read(1L)
+                () -> orderSheetService.read(1L)
         );
     }
 }

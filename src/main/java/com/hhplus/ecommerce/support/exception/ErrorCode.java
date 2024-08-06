@@ -10,6 +10,8 @@ public enum ErrorCode {
     USER_IS_NOT_FOUND("해당 유저가 존재하지 않습니다."),
     CHARGE_AMOUNT_IS_NEGATIVE("포인트는 0 이상 충전 가능합니다."),
     NOT_ENOUGH_BALANCE("잔액이 충분하지 않습니다."),
+    POINT_CONCURRENCY_FAILURE("포인트 동시요청으로 실패했습니다."),
+
 
     // Stock
     NOT_ENOUGH_STOCK("재고가 충분하지 않습니다."),

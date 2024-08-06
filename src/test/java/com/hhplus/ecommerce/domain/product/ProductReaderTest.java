@@ -1,7 +1,5 @@
 package com.hhplus.ecommerce.domain.product;
 
-import com.hhplus.ecommerce.domain.order.OrderReader;
-import com.hhplus.ecommerce.domain.order.OrderRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

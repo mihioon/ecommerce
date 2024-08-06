@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.util.OrderState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,7 +13,7 @@ public class OrderHistory {
     private String orderId; /* Key */
     private Long customerId;
     private LocalDateTime dateTime; /* 주문 날짜 */
-    private OrderState orderState; /* 주문 상태 */
+    private Order.State orderState; /* 주문 상태 */
     private BigDecimal totalPrice; /* 총 주문금액 */
     private List<OrderProduct> orderDetails;
 

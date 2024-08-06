@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.domain.order;
 
-import com.hhplus.ecommerce.util.OrderState;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ class OrderServiceTest {
         BigDecimal totalPrice = new BigDecimal("1000");
         List<OrderProduct> orderProducts = new ArrayList<>();
         orderProducts.add(new OrderProduct(1L,  new BigDecimal("1000"), 1L));
-        Order order = new Order(orderCode, customerId, totalPrice, orderProducts);
+        Order order = new Order(null, orderCode, customerId, Order.State.NEW, totalPrice, orderProducts);
 
         // When
         Long orderId = orderService.createOrder(order);
@@ -35,7 +34,7 @@ class OrderServiceTest {
         assertThat(result.getId()).isEqualTo(orderId);
         assertThat(result.getOrderCode()).isEqualTo(orderCode);
         assertThat(result.getCustomerId()).isEqualTo(customerId);
-        assertThat(result.getOrderState()).isEqualTo(OrderState.NEW);
+        assertThat(result.getOrderState()).isEqualTo(Order.State.NEW);
         assertThat(result.getTotalPrice()).isEqualByComparingTo(totalPrice);
     }
 }
