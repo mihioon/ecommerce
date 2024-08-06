@@ -4,7 +4,6 @@ import com.hhplus.ecommerce.domain.order.Order;
 import com.hhplus.ecommerce.domain.order.OrderProduct;
 import com.hhplus.ecommerce.domain.order.OrderRepository;
 import com.hhplus.ecommerce.domain.order.OrderSheet;
-import com.hhplus.ecommerce.util.OrderState;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -57,11 +56,23 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 주문 조회
     @Override
     public List<OrderProduct> findOrderProducts(Long orderId) {
-        List<OrderProduct> orderProducts = orderProductJpaRepo.findByOrderId(orderId)
+        return orderProductJpaRepo.findByOrderId(orderId)
                 .stream()
                 .map(this::toDomain)
                 .collect(Collectors.toList());
-        return orderProducts;
+    }
+
+    @Override
+    public void updateState(Long orderId, Order.State state) {
+        OrderEntity orderEntity = orderJpaRepo.findById(orderId).orElse(null);
+        orderEntity.updateState(state);
+    }
+
+    @Override
+    public Long saveOrderSheet(OrderSheet orderSheet) {
+        OrderSheetEntity orderSheetEntity = toEntity(orderSheet);
+        orderSheetEntity = orderSheetJpaRepo.save(orderSheetEntity);
+        return orderSheetEntity.getId();
     }
 
     /**
@@ -74,7 +85,8 @@ public class OrderRepositoryImpl implements OrderRepository {
                 orderEntity.getOrderCode(), /* Key */
                 orderEntity.getCustomerId(),
                 orderEntity.getOrderState(), /* 주문 상태 */
-                orderEntity.getTotalPrice() /* 총 주문금액 */
+                orderEntity.getTotalPrice(), /* 총 주문금액 */
+                null
         );
     }
 
@@ -84,7 +96,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                 order.getOrderCode(),
                 order.getCustomerId(),
                 LocalDateTime.now(),
-                OrderState.NEW,
+                Order.State.NEW,
                 order.getTotalPrice() /* 총 주문금액 */
         );
     }
@@ -114,10 +126,20 @@ public class OrderRepositoryImpl implements OrderRepository {
     // 엔티티 > 도메인 변환
     private OrderSheet toDomain(OrderSheetEntity orderSheetEntity) {
         return new OrderSheet(
-                orderSheetEntity.getId(), /* Key */
+                orderSheetEntity.getId(),
+                null,
                 orderSheetEntity.getCustomerId(),
                 orderSheetEntity.getTotalAmount(),
                 null
+        );
+    }
+
+    // 도메인 > 엔티티 변환
+    private OrderSheetEntity toEntity(OrderSheet orderSheet) {
+        return new OrderSheetEntity(
+                orderSheet.getId(),
+                orderSheet.getCustomerId(),
+                orderSheet.getTotalAmount()
         );
     }
 }

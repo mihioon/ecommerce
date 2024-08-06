@@ -1,6 +1,5 @@
 package com.hhplus.ecommerce.infrastructure.customer.entity;
 
-import com.hhplus.ecommerce.util.PointType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,21 +22,28 @@ public class PointHistoryEntity {
     /* Unique */
     @Column(nullable = false)
     private Long customerId;
+
     /* Unique */
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private PointType type;
-
-    @Column(nullable = false)
     private BigDecimal point; /* 잔액 */
 
-    public PointHistoryEntity(Long customerId, LocalDateTime dateTime, PointType type, BigDecimal point) {
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Type type;
+
+
+    public PointHistoryEntity(Long customerId, BigDecimal point, Type type) {
         this.customerId = customerId;
-        this.dateTime = dateTime;
         this.type = type;
         this.point = point;
+        this.dateTime = LocalDateTime.now();
+    }
+
+    public enum Type {
+        CHARGE,
+        USE,
     }
 }

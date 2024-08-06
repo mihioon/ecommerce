@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.infrastructure.order;
 
-import com.hhplus.ecommerce.util.OrderState;
+import com.hhplus.ecommerce.domain.order.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,12 +30,16 @@ public class OrderEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private OrderState orderState; /* 주문 상태 */
+    private Order.State orderState; /* 주문 상태 */
 
     @Column(nullable = false)
     private BigDecimal totalPrice; /* 총 주문금액 */
 
-    public OrderEntity(String orderCode, Long customerId, LocalDateTime now, OrderState orderState, BigDecimal totalPrice) {
+    public void updateState(Order.State state){
+        this.orderState = state;
+    }
+
+    public OrderEntity(String orderCode, Long customerId, LocalDateTime now, Order.State orderState, BigDecimal totalPrice) {
         this.orderCode = orderCode;
         this.customerId = customerId;
         this.orderDate = now;

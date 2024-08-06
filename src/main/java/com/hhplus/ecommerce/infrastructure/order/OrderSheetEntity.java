@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Table(name = "order_sheet")
 public class OrderSheetEntity {
     @Id
-    private String id; /* Key */
+    private Long id; /* Key */
 
     @Column(nullable = false)
     private Long customerId;

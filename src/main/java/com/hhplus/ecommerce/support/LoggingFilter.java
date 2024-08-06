@@ -15,7 +15,7 @@ import java.io.*;
 public class LoggingFilter implements Filter {
 
     private static final String[] EXCLUDED_PATHS = {
-            "/public/"
+            "/**"
     };
 
     @Override
