@@ -35,6 +35,10 @@ public class OrderEntity {
     @Column(nullable = false)
     private BigDecimal totalPrice; /* 총 주문금액 */
 
+    public void updateState(Order.State state){
+        this.orderState = state;
+    }
+
     public OrderEntity(String orderCode, Long customerId, LocalDateTime now, Order.State orderState, BigDecimal totalPrice) {
         this.orderCode = orderCode;
         this.customerId = customerId;

@@ -31,8 +31,8 @@ public class OrderService {
     }
 
     // 주문 상태 업데이트
-    public void updateState(Order.State state){
-
+    public void updateState(Long orderId, Order.State state){
+        orderRepository.updateState(orderId, state);
     }
 
     // 주문서 아이디로 주문서 조회

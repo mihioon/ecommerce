@@ -63,6 +63,12 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
+    public void updateState(Long orderId, Order.State state) {
+        OrderEntity orderEntity = orderJpaRepo.findById(orderId).orElse(null);
+        orderEntity.updateState(state);
+    }
+
+    @Override
     public Long saveOrderSheet(OrderSheet orderSheet) {
         OrderSheetEntity orderSheetEntity = toEntity(orderSheet);
         orderSheetEntity = orderSheetJpaRepo.save(orderSheetEntity);

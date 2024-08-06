@@ -9,13 +9,10 @@ import com.hhplus.ecommerce.domain.user.UserService;
 import com.hhplus.ecommerce.domain.user.PointService;
 import com.hhplus.ecommerce.domain.product.StockCommand;
 import com.hhplus.ecommerce.domain.product.StockService;
-import com.hhplus.ecommerce.infrastructure.redis.RedisLockRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +24,6 @@ public class CheckOutProvider {
     private final PointService pointHistoryService;
     private final OrderService orderService;
     private final StockService stockService;
-    private final RedisLockRepository redisLockRepository;
     private final PointService pointService;
     private final OrderSheetService orderSheetService;
     private final PaymentService paymentService;
@@ -45,14 +41,14 @@ public class CheckOutProvider {
         stockService.deductStocks(stocks);
 
         // 주문 생성
-        orderService.createOrder(orderSheetId); // 주문생성
+        Long orderId = orderService.createOrder(orderSheetId); // 주문생성
 
         // 결제
         Payment payment = orderRequest.toPayment();
         paymentService.pay(payment);
 
         // 주문완료 상태 업데이트
-        orderService.updateState(Order.State.PAID);
+        orderService.updateState(orderId, Order.State.PAID);
     }
 
     public List<StockCommand> toDomain(List<OrderProduct> orderProductList){

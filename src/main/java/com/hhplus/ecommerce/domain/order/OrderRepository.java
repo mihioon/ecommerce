@@ -9,5 +9,7 @@ public interface OrderRepository {
     public void persistOrderProducts(Long orderId, List<OrderProduct> orderProducts);
     public List<OrderProduct> findOrderProducts(Long orderId);
 
+    public void updateState(Long orderId, Order.State state);
+
     public Long saveOrderSheet(OrderSheet orderSheet);
 }
