@@ -10,10 +10,10 @@ public class OrderSheetService {
     private final OrderRepository orderRepository;
     private final NullChecker nullChecker;
 
-    public OrderSheet create(OrderSheet orderSheet) {
-        orderSheet = orderRepository.saveOrderSheet(orderSheet);
+    public Long create(OrderSheet orderSheet) {
+        Long orderSheetId = orderRepository.saveOrderSheet(orderSheet);
         NullChecker.checkNotNull(orderSheet, "orderSheet");
-        return orderSheet;
+        return orderSheetId;
     }
 
     public OrderSheet find(Long orderSheetId) {

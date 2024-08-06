@@ -28,7 +28,7 @@ class OrderSheetServiceTest {
         // then
         assertThrows(
                 NullPointerException.class,
-                () -> orderSheetService.read(1L)
+                () -> orderSheetService.find(1L)
         );
     }
 }

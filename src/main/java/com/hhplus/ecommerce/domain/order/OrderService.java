@@ -1,7 +1,6 @@
 package com.hhplus.ecommerce.domain.order;
 
 import com.hhplus.ecommerce.domain.NullChecker;
-import com.hhplus.ecommerce.domain.payment.Payment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

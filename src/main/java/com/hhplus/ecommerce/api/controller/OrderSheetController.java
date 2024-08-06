@@ -19,10 +19,10 @@ public class OrderSheetController {
 
     // 주문서 저장
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<OrderSheet>> createOrderSheet(@RequestParam OrderSheetRequest OrderSheetRequest) {
+    public ResponseEntity<ApiResponse<Long>> createOrderSheet(@RequestParam OrderSheetRequest OrderSheetRequest) {
         OrderSheet orderSheet = OrderSheetRequest.toOrderSheet();
-        orderSheet = orderSheetService.create(orderSheet);
-        return ResponseEntity.ok(ApiResponse.success(SuccessType.msg, orderSheet));
+        Long orderSheetId = orderSheetService.create(orderSheet);
+        return ResponseEntity.ok(ApiResponse.success(SuccessType.msg, orderSheetId));
     }
 
     // 주문서 조회
