@@ -18,6 +18,7 @@ public class Order {
     private List<OrderProduct> orderProducts;
 
     public enum State {
+        FAILED, /* 실패 */
         NEW, /* 생성 */
         PENDING, /* 주문접수 */
         PAID, /* 결제완료 */

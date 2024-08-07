@@ -1,6 +1,6 @@
 package com.hhplus.ecommerce.api.controller;
 
-import com.hhplus.ecommerce.api.controllerDTO.request.OrderRequest;
+import com.hhplus.ecommerce.api.controllerDTO.request.CheckOutRequest;
 import com.hhplus.ecommerce.application.CheckOutProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ public class CheckOutController {
 
     // 주문 / 결제 api
     @PostMapping("/order")
-    public ResponseEntity<Void> checkOut(@RequestBody OrderRequest orderRequest){
-        checkOutUseCase.checkOut(orderRequest);
+    public ResponseEntity<Void> checkOut(@RequestBody CheckOutRequest checkOutRequest){
+        checkOutUseCase.checkOut(checkOutRequest);
         return ResponseEntity.ok().build();
     }
 }

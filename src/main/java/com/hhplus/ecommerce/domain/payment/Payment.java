@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 public class Payment {
+    private Long id;
     private Type type;
     private BigDecimal paymentAmount;
 

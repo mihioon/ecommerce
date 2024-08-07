@@ -16,5 +16,4 @@ public class OrderHistory {
     private Order.State orderState; /* 주문 상태 */
     private BigDecimal totalPrice; /* 총 주문금액 */
     private List<OrderProduct> orderDetails;
-
 }
