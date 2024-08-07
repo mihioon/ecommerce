@@ -40,6 +40,11 @@ public class OrderService {
         return orderSheetService.find(orderSheetId);
     }
 
+    // 주문 히스토리 저장
+    public void saveHistory(Long orderId){
+
+    }
+
     // 주문서 객체 > 주문 객체 변환
     public Order toOrder(OrderSheet orderSheet){
         return new Order(
